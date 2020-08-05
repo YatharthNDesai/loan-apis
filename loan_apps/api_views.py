@@ -4,6 +4,14 @@ from rest_framework.generics import ListAPIView,CreateAPIView
 from loan_apps.serializers import LoanApplicationSerializer,AddressSerializer,BusinessSerializer
 from loan_apps.models import LoanApplication,Business,Address
 
+class LoanApplicationListById(ListAPIView):
+    queryset = LoanApplication.objects.all()
+    serializer_class = LoanApplicationSerializer
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        return LoanApplication.objects.filter(id=id)
+
 class LoanApplicationList(ListAPIView):
     queryset = LoanApplication.objects.all()
     serializer_class = LoanApplicationSerializer

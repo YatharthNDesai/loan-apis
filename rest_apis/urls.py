@@ -23,8 +23,9 @@ import loan_apps.api_views
 urlpatterns = [
     path('apps/', include('loan_apps.urls')),
     path('admin/', admin.site.urls),
+    path('api/status/<int:id>', loan_apps.api_views.LoanApplicationListById.as_view()),
     path('api/loanapps', loan_apps.api_views.LoanApplicationList.as_view()),
-    path('api/loanapps/new', loan_apps.api_views.LoanApplicationCreate.as_view()),
+    path('api/loanapp', loan_apps.api_views.LoanApplicationCreate.as_view()),
     path('api/address', loan_apps.api_views.AddressList.as_view()),
     path('api/address/new', loan_apps.api_views.AddressCreate.as_view()),
     path('api/business', loan_apps.api_views.BusinessList.as_view()),
