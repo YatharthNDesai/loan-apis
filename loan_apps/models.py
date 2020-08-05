@@ -2,11 +2,11 @@ from django.db import models
 
 
 class LoanApplication(models.Model):
-    RequestHeader = models.OneToOneField('RequestHeader',on_delete=models.CASCADE)
-    Business = models.OneToOneField('Business',on_delete=models.CASCADE)
-    Owners = models.ManyToManyField('Owner')
-    CFApplicationData = models.OneToOneField('CFApplicationData',on_delete=models.CASCADE)
-
+    name = models.CharField(max_length=1,null=True)
+    RequestHeader = models.OneToOneField('RequestHeader',on_delete=models.CASCADE,null=True)
+    Business = models.OneToOneField('Business',on_delete=models.CASCADE,null=True)
+    CFApplicationData = models.OneToOneField('CFApplicationData',on_delete=models.CASCADE,null=True)
+    
 class RequestHeader(models.Model):
     CFRequestID = models.IntegerField()
     RequestDate = models.DateTimeField()
@@ -48,6 +48,7 @@ class Owner(models.Model):
     HomePhone = models.IntegerField()
     SSN = models.IntegerField()
     PercentageOfOwnership = models.IntegerField()
+    LoanApplication = models.ForeignKey(LoanApplication,on_delete=models.CASCADE,null=True)
 
 class CFApplicationData(models.Model):
     RequestedLoanAmount = models.DecimalField(max_digits=20,decimal_places=2)
@@ -55,4 +56,4 @@ class CFApplicationData(models.Model):
     LegalEntityType = models.CharField(max_length=50)
     FilterID = models.IntegerField()
 
-# Create your models here.
+    # Create your models here.
