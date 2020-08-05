@@ -16,8 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+import loan_apps.views
+import loan_apps.api_views
+
 
 urlpatterns = [
     path('apps/', include('loan_apps.urls')),
     path('admin/', admin.site.urls),
+    path('api/loanapps', loan_apps.api_views.LoanApplicationList.as_view()),
+    path('api/loanapps/new', loan_apps.api_views.LoanApplicationCreate.as_view()),
+    path('api/address', loan_apps.api_views.AddressList.as_view()),
+    path('api/address/new', loan_apps.api_views.AddressCreate.as_view()),
+    path('api/business', loan_apps.api_views.BusinessList.as_view()),
+    path('api/business/new', loan_apps.api_views.BusinessCreate.as_view())
 ]
