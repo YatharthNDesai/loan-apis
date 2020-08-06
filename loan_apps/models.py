@@ -37,7 +37,7 @@ class Owner(models.Model):
     Name = models.CharField(max_length=100)
     FirstName = models.CharField(max_length=100)
     LastName = models.CharField(max_length=100)
-    Email = models.EmailField(unique=True)
+    Email = models.EmailField()
     DateOfBirth= models.DateTimeField()
     HomePhone = models.IntegerField()
     SSN = models.IntegerField()
